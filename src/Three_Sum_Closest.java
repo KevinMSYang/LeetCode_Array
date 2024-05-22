@@ -40,8 +40,10 @@ public class Three_Sum_Closest
 				{
 					return minSum;
 				}
-				System.out.println(minSum + " " + temp);
-				temp = Math.min(Math.abs(minSum - target), Math.abs(temp - target));
+				if (Math.abs(minSum - target) < Math.abs(temp - target))
+				{
+					temp = minSum;
+				}
 				// if target > minSum means target is bigger than sum, since the array is sorted, which means the sum need some bigger value to add on
 				if (minSum < target) 
 				{
