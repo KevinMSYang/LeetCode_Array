@@ -1,4 +1,4 @@
-import org.graalvm.compiler.lir.alloc.trace.DefaultTraceRegisterAllocationPolicy.BottomUpNumVariablesStrategy;
+
 
 //You are given a 0-indexed array of integers nums of length n. You are initially positioned at nums[0].
 //
@@ -26,23 +26,51 @@ public class Jump_Game_II {
 		if (nums.length <= 1) {
 			return 0;
 		}
+		int finalIndex = nums.length -1;
 		int step = 0;
-		int temp = 0;
-		int far = 0;
 		
-		for (int i = 0; i < nums.length -1; i++)
-		{
-			far = Math.max(far, i + nums[i]);
-			if (far >= nums.length-1) {
+		int farestJump = 0;
+		int coverage = 0;
+		
+		for (int i = 0; i < nums.length-1; i++) {
+			farestJump = Math.max(farestJump, i + nums[i]);
+			
+			if (farestJump >= finalIndex) {
 				step++;
-				break;
+				return step;
 			}
-			if (i == temp) {
+			if (i == coverage) {
+				coverage = farestJump;
 				step++;
-				temp = far;
 			}
 		}
 		return step;
+	}
+	
+//	  public int jump(int[] nums) {
+//		    int ans = 0;
+//		    int end = 0;
+//		    int farthest = 0;
+//
+//		    // Start an implicit BFS.
+//		    for (int i = 0; i < nums.length - 1; ++i) {
+//		      farthest = Math.max(farthest, i + nums[i]);
+//		      if (farthest >= nums.length - 1) {
+//		        ++ans;
+//		        break;
+//		      }
+//		      if (i == end) {   // Visited all the items on the current level.
+//		        ++ans;          // Increment the level.
+//		        end = farthest; // Make the queue size for the next level.
+//		      }
+//		    }
+//
+//		    return ans;
+//		  }
+	
+	public static void main(String[] args)
+	{
+		
 	}
 
 }
